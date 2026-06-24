@@ -27,6 +27,32 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'preferences' => 'array',
         ];
+    }
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class)->withPivot('is_favorite', 'progress_percentage', 'last_read_at')->withTimestamps();
+    }
+
+    public function readingSessions()
+    {
+        return $this->hasMany(ReadingSession::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
