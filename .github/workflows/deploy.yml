@@ -12,13 +12,13 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
       
-      - name: 📂 Sync Main Files to Root
+      - name: 📂 Sync Main Files to mindmatch_mesin
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /
+          server-dir: /mindmatch_mesin/
           exclude: |
             **/.git*
             **/.git*/**

@@ -6,15 +6,37 @@ use Illuminate\Http\Request;
 define('LARAVEL_START', microtime(true));
 
 // Determine if the application is in maintenance mode...
-if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
-    require $maintenance;
+$maintenanceLocal = __DIR__.'/../storage/framework/maintenance.php';
+$maintenanceServer = __DIR__.'/../../storage/framework/maintenance.php';
+
+if (file_exists($maintenanceLocal)) {
+    require $maintenanceLocal;
+} elseif (file_exists($maintenanceServer)) {
+    require $maintenanceServer;
 }
 
 // Register the Composer autoloader...
-require __DIR__.'/../vendor/autoload.php';
+$autoloaderLocal = __DIR__.'/../vendor/autoload.php';
+$autoloaderServer = __DIR__.'/../../vendor/autoload.php';
+
+if (file_exists($autoloaderLocal)) {
+    require $autoloaderLocal;
+} elseif (file_exists($autoloaderServer)) {
+    require $autoloaderServer;
+} else {
+    die("Autoloader not found. Please run 'composer install'.");
+}
 
 // Bootstrap Laravel and handle the request...
-/** @var Application $app */
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$appLocal = __DIR__.'/../bootstrap/app.php';
+$appServer = __DIR__.'/../../bootstrap/app.php';
+
+if (file_exists($appLocal)) {
+    $app = require_once $appLocal;
+} elseif (file_exists($appServer)) {
+    $app = require_once $appServer;
+} else {
+    die("Bootstrap app.php not found.");
+}
 
 $app->handleRequest(Request::capture());
