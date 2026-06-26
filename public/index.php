@@ -39,4 +39,7 @@ if (file_exists($appLocal)) {
     die("Bootstrap app.php not found.");
 }
 
+// Beri tahu Laravel di mana lokasi folder public sebenarnya saat ini
+$app->usePublicPath(__DIR__);
+
 $app->handleRequest(Request::capture());

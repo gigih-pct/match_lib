@@ -19,6 +19,11 @@ jobs:
           
       - name: 📦 Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader
+        
+      - name: 🏗️ Build Frontend Assets (Vite)
+        run: |
+          npm install
+          npm run build
       
       - name: 📂 Sync Main Files to mindmatch_mesin
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
