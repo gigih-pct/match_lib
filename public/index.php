@@ -7,7 +7,7 @@ define('LARAVEL_START', microtime(true));
 
 // Determine if the application is in maintenance mode...
 $maintenanceLocal = __DIR__.'/../storage/framework/maintenance.php';
-$maintenanceServer = __DIR__.'/../../storage/framework/maintenance.php';
+$maintenanceServer = __DIR__.'/../../mindmatch_mesin/storage/framework/maintenance.php';
 
 if (file_exists($maintenanceLocal)) {
     require $maintenanceLocal;
@@ -17,7 +17,7 @@ if (file_exists($maintenanceLocal)) {
 
 // Register the Composer autoloader...
 $autoloaderLocal = __DIR__.'/../vendor/autoload.php';
-$autoloaderServer = __DIR__.'/../../vendor/autoload.php';
+$autoloaderServer = __DIR__.'/../../mindmatch_mesin/vendor/autoload.php';
 
 if (file_exists($autoloaderLocal)) {
     require $autoloaderLocal;
@@ -29,7 +29,7 @@ if (file_exists($autoloaderLocal)) {
 
 // Bootstrap Laravel and handle the request...
 $appLocal = __DIR__.'/../bootstrap/app.php';
-$appServer = __DIR__.'/../../bootstrap/app.php';
+$appServer = __DIR__.'/../../mindmatch_mesin/bootstrap/app.php';
 
 if (file_exists($appLocal)) {
     $app = require_once $appLocal;
